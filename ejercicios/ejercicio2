@@ -1,0 +1,79 @@
+### Ejercicio 2
+
+#include <iostream>
+using namespace std;
+
+// Función que separa un número de 4 cifras en un arreglo
+void separarCifras(int num, int cifras[]) {
+    cifras[3] = num % 10;
+    cifras[2] = (num / 10) % 10;
+    cifras[1] = (num / 100) % 10;
+    cifras[0] = (num / 1000) % 10;
+}
+
+// Función que determina el premio
+int calcularPremio(int apuesta, int ganador) {
+    int a[4], g[4];
+    separarCifras(apuesta, a);
+    separarCifras(ganador, g);
+
+    // 4 cifras en orden
+    if (a[0] == g[0] && a[1] == g[1] && a[2] == g[2] && a[3] == g[3]) {
+        return 4500 * 1000;
+    }
+
+    // 4 cifras en desorden
+    int aciertos = 0;
+    bool usado[4] = {false, false, false, false};
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (a[i] == g[j] && !usado[j]) {
+                aciertos++;
+                usado[j] = true;
+                break;
+            }
+        }
+    }
+
+    if (aciertos == 4) {
+        return 200 * 1000;
+    }
+
+    // Últimas 3 cifras en orden
+    if (a[1] == g[1] && a[2] == g[2] && a[3] == g[3]) {
+        return 400 * 1000;
+    }
+
+    // Últimas 2 cifras en orden
+    if (a[2] == g[2] && a[3] == g[3]) {
+        return 50 * 1000;
+    }
+
+    // Última cifra
+    if (a[3] == g[3]) {
+        return 5 * 1000;
+    }
+
+    return 0;
+}
+
+int main() {
+    int apuesta, ganador;
+
+    cout << "Ingrese numero apostado (4 cifras): ";
+    cin >> apuesta;
+
+    cout << "Ingrese numero ganador (4 cifras): ";
+    cin >> ganador;
+
+    int premio = calcularPremio(apuesta, ganador);
+
+    if (premio > 0) {
+        cout << "Ganaste $" << premio << endl;
+    } else {
+        cout << "No obtuviste premio." << endl;
+    }
+
+    return 0;
+}
