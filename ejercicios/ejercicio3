@@ -1,0 +1,128 @@
+### EJERCICIO 3
+
+
+using System;
+
+namespace TallerScriptingRepaso.Ejercicio3
+{
+    // =======================
+    // CLASE ABSTRACTA
+    // =======================
+    public abstract class AbstractSample
+    {
+        private string message = "";
+
+        protected void SetMessage(string msg)
+        {
+            message = msg ?? "";
+        }
+
+        protected string GetMessage()
+        {
+            return message;
+        }
+
+        public abstract void PrintMessage(string msg);
+
+        public virtual string InvertMessage(string msg)
+        {
+            SetMessage(msg);
+
+            char[] arr = message.ToCharArray();
+            Array.Reverse(arr);
+
+            string inverted = new string(arr);
+            SetMessage(inverted);
+
+            return inverted;
+        }
+
+        protected string SwapCase(string s)
+        {
+            char[] arr = s.ToCharArray();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (char.IsUpper(arr[i]))
+                    arr[i] = char.ToLower(arr[i]);
+                else if (char.IsLower(arr[i]))
+                    arr[i] = char.ToUpper(arr[i]);
+            }
+
+            return new string(arr);
+        }
+    }
+
+    // =======================
+    // SUBCLASE 1
+    // =======================
+    public class SimpleSample : AbstractSample
+    {
+        public override void PrintMessage(string msg)
+        {
+            SetMessage(msg);
+            Console.WriteLine(GetMessage());
+        }
+    }
+
+    // =======================
+    // SUBCLASE 2
+    // =======================
+    public class SwapCaseSample : AbstractSample
+    {
+        public override void PrintMessage(string msg)
+        {
+            SetMessage(msg);
+            Console.WriteLine(SwapCase(GetMessage()));
+        }
+
+        public override string InvertMessage(string msg)
+        {
+            string inverted = base.InvertMessage(msg);
+            string swapped = SwapCase(inverted);
+            SetMessage(swapped);
+            return swapped;
+        }
+    }
+
+    // =======================
+    // MESSAGE MANAGER (LO QUE FALTABA)
+    // =======================
+    public class MessageManager
+    {
+        private AbstractSample sample1;
+        private AbstractSample sample2;
+
+        public MessageManager()
+        {
+            sample1 = new SimpleSample();
+            sample2 = new SwapCaseSample();
+        }
+
+        public void Execute(string message)
+        {
+            Console.WriteLine("---- SimpleSample ----");
+            sample1.PrintMessage(message);
+
+            Console.WriteLine("---- SwapCaseSample ----");
+            sample2.PrintMessage(message);
+        }
+    }
+
+    // =======================
+    // MAIN
+    // =======================
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Ingrese un mensaje: ");
+            string input = Console.ReadLine();
+
+            MessageManager manager = new MessageManager();
+            manager.Execute(input);
+        }
+    }
+}
+
+
