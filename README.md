@@ -1,1 +1,5 @@
-# taller-scripting-repaso-santiago-echeverri
+# Taller de Repaso – Scripting
+
+En este repositorio se desarrollan los ejercicios solicitados en el taller.
+
+
