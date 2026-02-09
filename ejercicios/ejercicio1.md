@@ -1,12 +1,14 @@
 ### EJERCICIO 1
 
+## Escriba una función que imprima únicamente los números primos de la serie de Fibonacci hasta el n-ésimo término.
+Escriba una función que reciba una cantidad entera de segundos y retorne un string que muestre esa cantidad en formato HH:MM:SS. NO utilizar la clase DateTime.
+
 
 ```
 
 #include <iostream>
 using namespace std;
 
-// Función para verificar si un número es primo
 bool esPrimo(int n) {
     if (n <= 1) return false;
 
@@ -17,7 +19,6 @@ bool esPrimo(int n) {
     return true;
 }
 
-// Función que imprime los números primos de la serie de Fibonacci
 void imprimirFibonacciPrimos(int n) {
     int a = 0, b = 1, c;
 
