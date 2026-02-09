@@ -1,7 +1,7 @@
 ### EJERCICIO 1
 
 
-```cpp
+```
 
 #include <iostream>
 using namespace std;
