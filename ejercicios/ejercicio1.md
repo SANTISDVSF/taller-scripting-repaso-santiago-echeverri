@@ -1,7 +1,6 @@
 ### EJERCICIO 1
 
-## Escriba una función que imprima únicamente los números primos de la serie de Fibonacci hasta el n-ésimo término.
-Escriba una función que reciba una cantidad entera de segundos y retorne un string que muestre esa cantidad en formato HH:MM:SS. NO utilizar la clase DateTime.
+## Escriba una función que imprima únicamente los números primos de la serie de Fibonacci hasta el n-ésimo término. Escriba una función que reciba una cantidad entera de segundos y retorne un string que muestre esa cantidad en formato HH:MM:SS. NO utilizar la clase DateTime.
 
 
 ```
